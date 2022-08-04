@@ -1,8 +1,10 @@
 steps:
 - name: 'gcr.io/docker-flask-358409/python-docker'
   args: [ 'build', '-t', 'gcr.io/docker-flask-358409/python-docker:$SHORT_SHA', '.' ]
+  dir: '/home/saurabh_singh_210983/Google-Cloud-Task/sample-app'
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'push', 'gcr.io/docker-flask-358409/python-docker:$SHORT_SHA']
+  dir: '/home/saurabh_singh_210983/Google-Cloud-Task/sample-app'
 - name: 'gcr.io/docker-flask-358409/gcloud'
   args:
     - 'run'
@@ -13,3 +15,5 @@ steps:
     - '--allow-unauthenticated'
     - '--service-account=yo.saurabh@gmail.com'
     - '--image=gcr.io/docker-flask-358409/python-docker:$SHORT_SHA'
+  dir: '/home/saurabh_singh_210983/Google-Cloud-Task/sample-app'  
+  
