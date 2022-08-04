@@ -1,0 +1,15 @@
+steps:
+- name: 'gcr.io/docker-flask-358409/python-docker'
+  args: [ 'build', '-t', 'gcr.io/docker-flask-358409/python-docker:$SHORT_SHA', '.' ]
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'push', 'gcr.io/docker-flask-358409/python-docker:$SHORT_SHA']
+- name: 'gcr.io/docker-flask-358409/gcloud'
+  args:
+    - 'run'
+    - 'deploy'
+    - '${_SERVICE_NAME}'
+    - '--region=${_REGION}'
+    - '--platform=managed'
+    - '--allow-unauthenticated'
+    - '--service-account=yo.saurabh@gmail.com'
+    - '--image=gcr.io/docker-flask-358409/python-docker:$SHORT_SHA'
