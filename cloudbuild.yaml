@@ -3,13 +3,14 @@ steps:
   args: [ 'build', '-t', 'gcr.io/docker-flask-358409/python-docker:$SHORT_SHA', '.' ]
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'push', 'gcr.io/docker-flask-358409/python-docker:$SHORT_SHA']
-- name: 'gcr.io/cloud-builders/gcloud'
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: 'gcloud'
+  timeout: 240s
   args:
     - 'run'
     - 'deploy'
-    - '${_SERVICE_NAME}'
-    - '--region=${_REGION}'
+    - 'python-docker'
+    - '--region=us-west1'
     - '--platform=managed'
     - '--allow-unauthenticated'
-    - '--service-account=saurabh.singh.210983@gmail.com'
     - '--image=gcr.io/docker-flask-358409/python-docker:$SHORT_SHA'
