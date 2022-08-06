@@ -37,6 +37,9 @@
 **Repo clone commands:**
 - gcloud iam service-accounts create sample-app
 - git clone https://github.com/saursing/GCP-pipeline.git sample-app
+- gcloud config set project docker-flask-358409
+- PROJECT_ID=$(gcloud config get-value project)
+- git remote add google "https://source.developers.google.com/p/${PROJECT_ID}/r/sample-app"
 - git push google main
 
 **To update repo with new files checked into git:-**
