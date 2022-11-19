@@ -10,7 +10,7 @@ steps:
     - 'run'
     - 'deploy'
     - 'python-docker'
-    - '--region=us-cenrtal1'
+    - '--region=us-central1'
     - '--platform=managed'
     - '--allow-unauthenticated'
     - '--image=gcr.io/rb-munish-playground/python-docker:$SHORT_SHA'
